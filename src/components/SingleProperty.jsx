@@ -92,7 +92,7 @@ function SingleProperty({ saveProperty, currentUser }) {
   };
 
   return (
-    <div>
+    <div className="single-property-container">
       <h1 className="property-title">{property.property_name}</h1>
       {property.images && (
         <div className="single-property-image-container">
@@ -113,9 +113,10 @@ function SingleProperty({ saveProperty, currentUser }) {
         </div>
       )}
 
-      <p>
-        <strong>Property type:</strong> {property.property_type}
-      </p>
+      <div className="property-details-spacing">
+        <p>
+          <strong>Property type:</strong> {property.property_type}
+        </p>
       <p>
         <strong>Description:</strong> {property.description}
       </p>
@@ -128,78 +129,77 @@ function SingleProperty({ saveProperty, currentUser }) {
       <p>
         <strong>Host:</strong> {property.host}
       </p>
-      <p>
-        <img
-          src={property.host_avatar}
-          alt={`${property.host}'s avatar`}
-          className="host-avatar"
-        />
-      </p>
+        <p>
+          <img
+            src={property.host_avatar}
+            alt={`${property.host}'s avatar`}
+            className="host-avatar"
+          />
+        </p>
+      </div>
 
-      <hr />
       <div className="booking-calendar-container">
         <BookingCalendar />
       </div>
-      <hr />
 
-      <h2>Reviews</h2>
-      {reviews.length === 0 ? (
-        <p>No reviews yet.</p>
-      ) : (
-        <ul className="review-list">
-          {reviews.map((review) => (
-            <li key={review.review_id || review.tempId} className="review-item">
-              <div className="review-header">
-                <p className="review-guest">{review.guest}</p>
-                <img
-                  src={review.guest_avatar}
-                  alt={`${review.guest}'s avatar`}
-                  className="review-avatar"
-                />
-              </div>
+      <div className="reviews-container">
+        <h2>Reviews</h2>
+        {reviews.length === 0 ? (
+          <p>No reviews yet.</p>
+        ) : (
+          <ul className="review-list">
+            {reviews.map((review) => (
+              <li key={review.review_id || review.tempId} className="review-item">
+                <div className="review-header">
+                  <p className="review-guest">{review.guest}</p>
+                  <img
+                    src={review.guest_avatar}
+                    alt={`${review.guest}'s avatar`}
+                    className="review-avatar"
+                  />
+                </div>
 
-              <p className="review-date">
-                {review.created_at
-                  ? new Date(review.created_at).toLocaleDateString()
-                  : ""}
-              </p>
-              <p className="review-rating">⭐ {review.rating} / 5</p>
-              <p className="review-comment">{review.comment}</p>
+                <p className="review-date">
+                  {review.created_at
+                    ? new Date(review.created_at).toLocaleDateString()
+                    : ""}
+                </p>
+                <p className="review-rating">⭐ {review.rating} / 5</p>
+                <p className="review-comment">{review.comment}</p>
 
-              {/* Show delete button only for your own review - positioned at bottom */}
-              {currentUser &&
-                review.guest_id &&
-                String(review.guest_id) === String(currentUser.id) && (
-                  <div className="review-actions" style={{ marginTop: '10px', textAlign: 'center' }}>
-                    <button
-                      className="delete-review-btn"
-                      onClick={() =>
-                        handleDelete(review.review_id || review.tempId)
-                      }
-                      title="Delete review"
-                    >
-                      🗑️ Delete
-                    </button>
-                  </div>
-                )}
-            </li>
-          ))}
-        </ul>
-      )}
-      {averageRating && (
-        <p>
-          <strong>Average rating:</strong> {averageRating} / 5
-        </p>
-      )}
+                {/* Show delete button only for your own review - positioned at bottom */}
+                {currentUser &&
+                  review.guest_id &&
+                  String(review.guest_id) === String(currentUser.id) && (
+                    <div className="review-actions" style={{ marginTop: '10px', textAlign: 'center' }}>
+                      <button
+                        className="delete-review-btn"
+                        onClick={() =>
+                          handleDelete(review.review_id || review.tempId)
+                        }
+                        title="Delete review"
+                      >
+                        🗑️ Delete
+                      </button>
+                    </div>
+                  )}
+              </li>
+            ))}
+          </ul>
+        )}
+        {averageRating && (
+          <p>
+            <strong>Average rating:</strong> {averageRating} / 5
+          </p>
+        )}
+      </div>
 
-      <hr />
       <ReviewForm
         propertyId={id}
         addReview={(newReview) => setReviews([...reviews, newReview])}
         currentUser={currentUser}
         hostName={property.host}
       />
-      <hr />
     </div>
   );
 }

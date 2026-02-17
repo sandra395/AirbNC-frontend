@@ -63,6 +63,18 @@ header {
   border: none;
   color: white;
   cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.header-buttons button:hover {
+  transform: translateY(-1px);
+  /* No background-color */
+}
+
+.header-buttons button:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
 }
 
 .header-buttons button img {
@@ -71,6 +83,7 @@ header {
   border-radius: 50%;
   border: 2px solid white;
   max-width: 100%;
+  transition: all 0.2s ease;
 }
 
 .header-buttons button span {
@@ -82,32 +95,7 @@ header {
 .carousel-item img {
   width: 100%;
   height: auto;
-  max-width: 1280px;
-  display: block;
-  margin: 0 auto;
-}
-
-.custom-carousel .carousel-control-prev,
-.custom-carousel .carousel-control-next {
-  position: absolute;
-  top: 5px;
-  z-index: 10;
-  filter: invert(100%);
-}
-
-.custom-carousel .carousel-control-prev {
-  left: 5px;
-}
-
-.custom-carousel .carousel-control-next {
-  right: 5px;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  width: 35px;
-  height: 35px;
-  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.8));
+  max-width: 1400px; /* Increase from 1280px */
 }
 
 .carousel-container {
@@ -170,7 +158,7 @@ header {
 }
 
 .filter-filters button {
-  background-color: #1e40af;
+  background-color: #4a55e8;
   color: white;
   font-weight: 600;
   border: none;
@@ -287,9 +275,9 @@ header {
 
 /* ================== Booking Calendar ================== */
 .booking-calendar-container {
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 20px;
+  max-width: 1100px;
+  margin: 60px auto 40px auto;
+  padding: 35px;
   background-color: #f9f9ff;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -312,11 +300,31 @@ header {
 .booking-calendar-container input,
 .booking-calendar-container button {
   width: 100%;
-  padding: 8px 10px;
-  margin-bottom: 15px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  height: 55px;
+}
+
+/* Make the calendar icon bigger */
+.booking-calendar-container
+  input[type="date"]::-webkit-calendar-picker-indicator {
+  font-size: 24px;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* Improve calendar popup appearance */
+.booking-calendar-container input[type="date"]::-webkit-datetime-edit {
+  font-size: 18px;
+}
+
+.booking-calendar-container input[type="date"]::-webkit-inner-spin-button {
+  height: 40px;
 }
 
 .booking-calendar-container button {
@@ -391,9 +399,9 @@ li img,
 /* ================== Review Section ================== */
 .review-section,
 .reviews-section {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
+  max-width: 1100px;
+  margin: 40px auto 60px auto;
+  padding: 35px;
   background-color: #f5f6fa;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -433,18 +441,23 @@ li img,
 
 .review-section textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 150px;
+  line-height: 1.5;
+  padding: 15px;
+  font-size: 16px;
 }
 
 .review-section button {
   background-color: #4a55e8;
   color: white;
   font-weight: bold;
-  padding: 10px 18px;
+  padding: 15px 20px;
+  font-size: 18px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s;
+  width: 100%;
 }
 
 .review-section button:hover {
@@ -458,6 +471,23 @@ li img,
   padding: 0 15px;
   font-family: Arial, sans-serif;
   color: #333;
+  text-align: center;
+}
+
+.property-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.single-property-container > p {
+  max-width: 600px;
+  margin: 15px auto;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 .single-property-image-container {
@@ -470,26 +500,33 @@ li img,
 .single-property-image {
   display: block;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-
 .favourite-heart {
   position: absolute;
-  top: 5px;
-  right: 0px;
+  top: 15px;
+  right: 5px;
   cursor: pointer;
-  font-size: 80px;
-  background: transparent;
+  font-size: 70px;
+  background: none;
   border: none;
   outline: none;
-  color: black;
-  transition: color 0.3s ease, transform 0.2s ease;
+  color: #ff4757;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.favourite-heart:hover {
+  transform: scale(1.15);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
 }
 
 .favourite-heart.outline::before {
   content: "♡";
+  color: #ff4757;
 }
 
 .favourite-heart.filled::before {
@@ -497,7 +534,117 @@ li img,
 }
 
 .favourite-heart.filled {
-  transform: scale(1.2);
+  transform: none;
+}
+
+/* ================== Property Details Spacing ================== */
+.property-details-spacing {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+/* ================== Reviews Container ================== */
+.reviews-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 35px;
+  background-color: #f5f6fa;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reviews-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* ================== Property Card Button ================== */
+.view-property-btn {
+  background-color: #4a55e8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+  position: relative;
+  z-index: 15;
+}
+
+.view-property-btn:hover {
+  background-color: #3b45b5;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(59, 69, 181, 0.3);
+}
+
+.view-property-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(59, 69, 181, 0.3);
+}
+
+/* ================== Filter Button Hover Effects ================== */
+.filter-filters button:hover {
+  background-color: #3b45b5;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(59, 69, 181, 0.3);
+}
+
+.filter-filters button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(30, 64, 175, 0.3);
+}
+
+/* ================== Review Actions & Delete Button ================== */
+.review-actions {
+  margin-top: 10px;
+  text-align: center;
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+}
+
+/* ================== Carousel Controls & Cards ================== */
+.custom-carousel .carousel-control-prev,
+.custom-carousel .carousel-control-next {
+  position: absolute;
+  top: 35%;
+  transform: translateY(-50%);
+  z-index: 15;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  border: none;
+}
+
+.custom-carousel .carousel-control-prev {
+  left: 160px;
+}
+
+.custom-carousel .carousel-control-next {
+  right: 160px;
+}
+
+.custom-carousel .carousel-control-prev:hover,
+.custom-carousel .carousel-control-next:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
+.custom-carousel .property-card h2 {
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
 }
 
 .site-footer {
@@ -615,22 +762,22 @@ li img,
 }
 
 .delete-review-btn {
-  background-color: #dc3545 !important;
-  color: white !important;
-  border: none !important;
-  border-radius: 4px !important;
-  padding: 6px 12px !important;
-  font-size: 14px !important;
-  cursor: pointer !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  transition: all 0.2s ease !important;
-  font-weight: 500 !important;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  font-weight: 600;
 }
 
 .delete-review-btn:hover {
-  background-color: #c82333 !important;
+  background-color: #c82333;
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
 }

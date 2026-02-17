@@ -35,7 +35,12 @@ function PropertyCard({
           <strong>Host:</strong> {host_name}
         </p>
       )}
-      <button onClick={() => navigate(`/property/${id}`)}>View Property</button>
+      <button
+        className="view-property-btn"
+        onClick={() => navigate(`/property/${id}`)}
+      >
+        View Property
+      </button>
     </div>
   );
 }
