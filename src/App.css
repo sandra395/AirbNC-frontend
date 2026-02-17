@@ -606,7 +606,14 @@ li img,
   }
 }
 
-/* ================== Delete Review Button ================== */
+/* ================== Review Actions & Delete Button ================== */
+.review-actions {
+  margin-top: 10px;
+  text-align: right;
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+}
+
 .delete-review-btn {
   background-color: #dc3545 !important;
   color: white !important;
@@ -615,10 +622,10 @@ li img,
   padding: 6px 12px !important;
   font-size: 14px !important;
   cursor: pointer !important;
-  display: flex !important;
+  display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
-  transition: background-color 0.2s ease !important;
+  transition: all 0.2s ease !important;
   font-weight: 500 !important;
 }
 

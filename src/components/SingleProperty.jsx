@@ -156,21 +156,6 @@ function SingleProperty({ saveProperty, currentUser }) {
                   alt={`${review.guest}'s avatar`}
                   className="review-avatar"
                 />
-
-                {/* Show delete button only for your own review */}
-                {currentUser &&
-                  review.guest_id &&
-                  String(review.guest_id) === String(currentUser.id) && (
-                    <button
-                      className="delete-review-btn"
-                      onClick={() =>
-                        handleDelete(review.review_id || review.tempId)
-                      }
-                      title="Delete review"
-                    >
-                      🗑️ Delete
-                    </button>
-                  )}
               </div>
 
               <p className="review-date">
@@ -180,6 +165,23 @@ function SingleProperty({ saveProperty, currentUser }) {
               </p>
               <p className="review-rating">⭐ {review.rating} / 5</p>
               <p className="review-comment">{review.comment}</p>
+
+              {/* Show delete button only for your own review - positioned at bottom */}
+              {currentUser &&
+                review.guest_id &&
+                String(review.guest_id) === String(currentUser.id) && (
+                  <div className="review-actions" style={{ marginTop: '10px', textAlign: 'right' }}>
+                    <button
+                      className="delete-review-btn"
+                      onClick={() =>
+                        handleDelete(review.review_id || review.tempId)
+                      }
+                      title="Delete review"
+                    >
+                      🗑️ Delete
+                    </button>
+                  </div>
+                )}
             </li>
           ))}
         </ul>
