@@ -609,7 +609,7 @@ li img,
 /* ================== Review Actions & Delete Button ================== */
 .review-actions {
   margin-top: 10px;
-  text-align: right;
+  text-align: center;
   padding-top: 8px;
   border-top: 1px solid #eee;
 }

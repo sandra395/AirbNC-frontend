@@ -170,7 +170,7 @@ function SingleProperty({ saveProperty, currentUser }) {
               {currentUser &&
                 review.guest_id &&
                 String(review.guest_id) === String(currentUser.id) && (
-                  <div className="review-actions" style={{ marginTop: '10px', textAlign: 'right' }}>
+                  <div className="review-actions" style={{ marginTop: '10px', textAlign: 'center' }}>
                     <button
                       className="delete-review-btn"
                       onClick={() =>
