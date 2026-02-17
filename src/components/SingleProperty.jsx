@@ -158,29 +158,19 @@ function SingleProperty({ saveProperty, currentUser }) {
                 />
 
                 {/* Show delete button only for your own review */}
-                {(() => {
-                  // Debug logging
-                  console.log("Review debug:", {
-                    reviewGuest: review.guest,
-                    reviewGuestId: review.guest_id,
-                    currentUserId: currentUser?.id,
-                    currentUserName: currentUser?.name,
-                    shouldShowDelete: currentUser && review.guest_id && String(review.guest_id) === String(currentUser.id)
-                  });
-                  
-                  return currentUser &&
-                    review.guest_id &&
-                    String(review.guest_id) === String(currentUser.id) && (
-                      <button
-                        className="delete-review-btn"
-                        onClick={() =>
-                          handleDelete(review.review_id || review.tempId)
-                        }
-                      >
-                        <img src="/delete.png" alt="Delete review" />
-                      </button>
-                    );
-                })()}
+                {currentUser &&
+                  review.guest_id &&
+                  String(review.guest_id) === String(currentUser.id) && (
+                    <button
+                      className="delete-review-btn"
+                      onClick={() =>
+                        handleDelete(review.review_id || review.tempId)
+                      }
+                      title="Delete review"
+                    >
+                      🗑️ Delete
+                    </button>
+                  )}
               </div>
 
               <p className="review-date">
