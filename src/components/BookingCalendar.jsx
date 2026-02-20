@@ -3,17 +3,18 @@ import "../App.css";
 import axios from "axios";
 import { createBooking } from "../api";
 
-export default function BookingCalendar() {
+export default function BookingCalendar({ currentUser, propertyId }) {
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
-
-  const propertyId = 9;
+  const [loading, setLoading] = useState(false);
 
   const handleBooking = async () => {
     if (!checkInDate || !checkOutDate) {
       alert("Please select check-in and check-out dates");
       return;
     }
+
+    setLoading(true);
 
     try {
       const data = await createBooking(propertyId, {
@@ -35,7 +36,7 @@ export default function BookingCalendar() {
 
   return (
     <div>
-      <h2>Book Property</h2>
+      <h3>Book Property</h3>
       <label>
         Check-in:
         <input
@@ -54,7 +55,9 @@ export default function BookingCalendar() {
         />
       </label>
       <br />
-      <button onClick={handleBooking}>Book Now</button>
+      <button onClick={handleBooking} disabled={loading}>
+        {loading ? "Booking..." : "Book Now"}
+      </button>
     </div>
   );
 }

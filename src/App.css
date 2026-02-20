@@ -57,7 +57,7 @@ header {
   align-items: center;
   gap: 4px;
   padding: 8px 12px;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: bold;
   background-color: transparent;
   border: none;
@@ -87,7 +87,7 @@ header {
 }
 
 .header-buttons button span {
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -104,7 +104,7 @@ header {
 }
 
 .images-title {
-  font-size: 55px;
+  font-size: 48px;
   font-weight: bold;
   color: black;
   margin-bottom: 30px;
@@ -116,7 +116,7 @@ header {
   background-color: #90caf9;
   padding: 1.5rem 2.5rem;
   position: sticky;
-  top: 20px;
+  top: 80px;
   margin-bottom: 50px;
   z-index: 10;
   border-bottom: 1px solid #bbb;
@@ -137,7 +137,7 @@ header {
   font-weight: 600;
   color: #222;
   gap: 0.75rem;
-  font-size: 1.1rem;
+  font-size: 16px;
 }
 
 .filter-filters select,
@@ -145,7 +145,7 @@ header {
   padding: 0.6rem 0.8rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 16px;
   outline: none;
   background-color: #fff;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -170,15 +170,18 @@ header {
 
 .filter-title {
   text-align: center;
-  font-size: 40px;
-  font-weight: bold;
-  margin: 40px 0;
-  color: #333;
+  font-size: 56px;
+  font-weight: 700;
+  margin: 50px 0;
+  color: #2c3e50;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* ================== Bookings Page ================== */
 .bookings-page h1 {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
   color: #222;
   text-align: center;
@@ -219,7 +222,7 @@ header {
 }
 
 .booking-card h2 {
-  font-size: 22px;
+  font-size: 20px;
   margin-bottom: 12px;
   color: #333;
 }
@@ -273,6 +276,27 @@ header {
   margin-bottom: 14px;
 }
 
+/* Property Card Typography */
+.filtered-properties-container .property-card h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 15px 0 10px 0;
+  color: #333;
+  text-align: center;
+}
+
+.filtered-properties-container .property-card p {
+  font-size: 14px;
+  margin: 6px 0;
+  color: #555;
+  line-height: 1.4;
+}
+
+.filtered-properties-container .property-card p strong {
+  color: #333;
+  font-weight: 600;
+}
+
 /* ================== Booking Calendar ================== */
 .booking-calendar-container {
   max-width: 1100px;
@@ -285,7 +309,7 @@ header {
 
 .booking-calendar-container h3 {
   text-align: center;
-  font-size: 22px;
+  font-size: 20px;
   margin-bottom: 15px;
   color: #333;
 }
@@ -346,7 +370,7 @@ header {
 }
 
 .profile-name {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
@@ -394,6 +418,172 @@ li img,
 .profile-edit-icon:hover {
   transform: scale(1.2);
   opacity: 0.8;
+}
+
+/* Profile Bookings Button */
+.profile-bookings-btn {
+  background-color: #4a55e8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-bookings-btn:hover {
+  background-color: #3b45b5;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(74, 85, 232, 0.3);
+}
+
+.bookings-link {
+  text-decoration: none;
+}
+
+/* Profile Section Card */
+
+.profile-section-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 20px;
+  text-align: center;
+}
+
+.profile-section-card p {
+  margin-bottom: 15px;
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Profile Reviews Styling */
+.profile-reviews-list {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.profile-review-item {
+  border: 1px solid #e9ecef;
+  border-radius: 15px;
+  padding: 35px;
+  margin: 30px auto;
+  background-color: #f8f9fa;
+  transition: all 0.2s ease;
+  text-align: center;
+  max-width: 700px;
+  min-height: 150px;
+}
+
+.profile-review-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.profile-review-item:last-child {
+  margin-bottom: 0;
+}
+
+.review-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 15px;
+}
+
+.review-header h4 {
+  margin: 0;
+  color: #333;
+  font-size: 16px;
+  text-align: center;
+}
+
+.review-rating {
+  color: #ff6b35;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.review-comment {
+  margin: 10px 0;
+  color: #555;
+  font-style: italic;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.review-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto 0 auto;
+  font-size: 12px;
+  gap: 15px;
+  text-align: center;
+}
+
+.review-date {
+  color: #888;
+}
+
+.view-property-link {
+  color: #4a55e8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.view-property-link:hover {
+  text-decoration: underline;
+}
+
+/* Profile Page Container Styling */
+.profile-page-container {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.profile-page-container > * {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 20px auto;
+  display: block;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-page-container p {
+  margin: 15px auto;
+  color: #555;
+  font-size: 16px;
+  text-align: center;
+  max-width: 800px;
+}
+
+.profile-section-card {
+  background-color: white;
+  padding: 60px;
+  margin: 50px auto;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  border: none;
+  text-align: center;
+  max-width: 950px;
+  min-height: 220px;
 }
 
 /* ================== Review Section ================== */
@@ -476,9 +666,9 @@ li img,
 
 .property-title {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 32px;
   font-weight: bold;
-  margin-bottom: 2rem;
+  margin-bottom: 16px;
   color: #333;
 }
 
@@ -486,14 +676,14 @@ li img,
   max-width: 600px;
   margin: 15px auto;
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 16px;
   line-height: 1.6;
 }
 
 .single-property-image-container {
   position: relative;
   display: inline-block;
-  margin-top: 50px;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -598,21 +788,78 @@ li img,
   box-shadow: 0 1px 2px rgba(30, 64, 175, 0.3);
 }
 
-/* ================== Review Actions & Delete Button ================== */
-.review-actions {
-  margin-top: 10px;
+/* ================== Property Page Reviews ================== */
+.review-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.review-item {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 25px;
+  margin: 20px 0;
   text-align: center;
-  padding-top: 8px;
-  border-top: 1px solid #eee;
+}
+
+.review-item .review-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.review-item .review-header .review-guest {
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  text-align: center;
+  line-height: 1;
+}
+
+.review-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  object-fit: cover;
+}
+
+.review-date {
+  color: #888;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.review-rating {
+  color: #ff6b35;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.review-comment {
+  margin: 15px 0;
+  color: #555;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
+  font-size: 15px;
 }
 
 /* ================== Carousel Controls & Cards ================== */
 .custom-carousel .carousel-control-prev,
 .custom-carousel .carousel-control-next {
   position: absolute;
-  top: 35%;
+  top: 44%;
   transform: translateY(-50%);
-  z-index: 15;
+  z-index: 25;
   width: 50px;
   height: 50px;
   background-color: rgba(0, 0, 0, 0.5);
@@ -643,7 +890,7 @@ li img,
 .custom-carousel .property-card h2 {
   margin-top: 25px;
   margin-bottom: 15px;
-  font-size: 20px;
+  font-size: 18px;
   color: #333;
 }
 
@@ -652,21 +899,50 @@ li img,
 }
 /* ================== Media Queries ================== */
 
-/* ≤599px */
+/* ≤599px - Mobile */
 @media (max-width: 599px) {
   header {
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    padding: 10px 16px;
+    gap: 28px;
+    padding: 12px 16px;
   }
 
   .site-logo {
-    width: 120px;
+    width: 115px;
+  }
+
+  .header-buttons button img {
+    width: 44px;
+  }
+
+  .header-buttons button span {
+    font-size: 14px;
+  }
+
+  .filterbar {
+    padding: 1rem 0.75rem;
+    top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .filter-title {
+    font-size: 24px;
+    margin: 24px 0 20px 0;
+  }
+
+  .filter-filters {
+    gap: 0.75rem;
+  }
+
+  .filter-filters label {
+    font-size: 14px;
   }
 
   .filtered-properties-container .property-card {
     width: 100%;
+    height: auto;
+    min-height: 500px;
   }
 
   .bookings-list {
@@ -675,9 +951,32 @@ li img,
 
   .favourite-heart {
     position: absolute;
-    font-size: 12vw;
+    font-size: 40px;
     top: 15px;
     right: 10px;
+  }
+}
+
+/* Carousel arrows - closer on mobile/tablet */
+@media (max-width: 768px) {
+  .custom-carousel .carousel-control-prev {
+    left: 10px;
+  }
+  .custom-carousel .carousel-control-next {
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-carousel .carousel-control-prev,
+  .custom-carousel .carousel-control-next {
+    width: 40px;
+    height: 40px;
+  }
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -687,6 +986,11 @@ li img,
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 24px;
+  }
+
+  .header-buttons {
+    margin-right: 80px;
+    transform: translateY(10px);
   }
 
   .site-logo {
@@ -710,7 +1014,7 @@ li img,
   }
 
   .favourite-heart {
-    font-size: 10vw;
+    font-size: 45px;
     top: 5%;
     right: 5%;
   }
@@ -735,21 +1039,37 @@ li img,
   }
 }
 
-/* ≤480px */
+/* ≤480px - Small mobile */
 @media (max-width: 480px) {
   .favourite-heart {
-    font-size: 15vw;
+    font-size: 36px;
     top: 2%;
     right: 2%;
   }
 
   .filterbar {
-    padding: 1rem;
+    padding: 0.75rem 0.5rem;
   }
 
   .filter-title {
-    font-size: 30px;
-    margin: 30px 0;
+    font-size: 22px;
+    margin: 20px 0 16px 0;
+  }
+
+  .filter-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .filter-filters label {
+    flex-wrap: wrap;
+  }
+
+  .filter-filters select,
+  .filter-filters input {
+    flex: 1;
+    min-width: 0;
   }
 }
 

@@ -139,7 +139,7 @@ function SingleProperty({ saveProperty, currentUser }) {
       </div>
 
       <div className="booking-calendar-container">
-        <BookingCalendar />
+        <BookingCalendar currentUser={currentUser} propertyId={id} />
       </div>
 
       <div className="reviews-container">

@@ -103,6 +103,16 @@ export const postReview = async (propertyId, reviewData) => {
   }
 };
 
+export const getUserReviews = async (userId) => {
+  try {
+    const res = await axios.get(`${API_BASE}/users/${userId}/reviews`);
+    return res.data.reviews || [];
+  } catch (err) {
+    console.error(`Failed to fetch reviews for user ${userId}:`, err);
+    return [];
+  }
+};
+
 // ---------------- USER PROFILE ----------------
 export const updateUser = async (userId, updatedData) => {
   try {

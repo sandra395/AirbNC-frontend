@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import editProfile from "../assets/edit.png";
 import {
   getUser,
   getUserProperties,
   getPropertyBookings,
   getUserBookings,
+  getUserReviews,
+  deleteReview,
 } from "../api";
 
 const Profile = ({ currentUser }) => {
   const [ownProperties, setOwnProperties] = useState([]);
-  const [propertyBookings, setPropertyBookings] = useState({}); // Bookings on her properties
+  const [propertyBookings, setPropertyBookings] = useState({});
+  const [userReviews, setUserReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
@@ -26,6 +28,10 @@ const Profile = ({ currentUser }) => {
         // Fetch user info
         const userData = await getUser(currentUser.id);
         setUser(userData.user || currentUser);
+
+        // Fetch user's reviews
+        let reviewsData = await getUserReviews(currentUser.id);
+        setUserReviews(reviewsData || []);
 
         // Fetch user's own properties
         const propertiesData = await getUserProperties(currentUser.id);
@@ -42,7 +48,6 @@ const Profile = ({ currentUser }) => {
         );
         setPropertyBookings(bookingsMap);
       } catch (err) {
-        console.error("Failed to fetch profile data:", err);
       } finally {
         setLoading(false);
       }
@@ -50,6 +55,21 @@ const Profile = ({ currentUser }) => {
 
     fetchProfileData();
   }, [currentUser]);
+
+  const handleDeleteReview = async (reviewId) => {
+    // Optimistically remove from UI
+    const updatedReviews = userReviews.filter((r) => r.review_id !== reviewId);
+    setUserReviews(updatedReviews);
+
+    try {
+      await deleteReview(reviewId);
+    } catch (err) {
+      console.error("Failed to delete review:", err);
+      alert("Could not delete review");
+      // Restore the review if deletion failed
+      setUserReviews(userReviews);
+    }
+  };
 
   if (loading) return <p>Loading profile...</p>;
   if (!user) return <p>User not found.</p>;
@@ -82,70 +102,61 @@ const Profile = ({ currentUser }) => {
         <strong>Phone:</strong> {user.phone_number || currentUser.phone_number}
       </p>
 
-      <hr />
+      {/* My Bookings Section */}
+      <div className="profile-section-card">
+        <h3>My Bookings</h3>
+        <p>View and manage your travel bookings.</p>
+        <Link to="/bookings" className="bookings-link">
+          <button className="profile-bookings-btn">📅 View My Bookings</button>
+        </Link>
+      </div>
 
-      {/* Own Properties */}
-      <h3>My Properties</h3>
-      {ownProperties.length === 0 ? (
-        <p>You haven't added any properties yet.</p>
-      ) : (
-        <ul>
-          {ownProperties.map((property) => (
-            <li key={property.property_id}>
-              <strong>{property.property_name}</strong> <br />
-              {property.image && (
-                <img
-                  src={property.image}
-                  alt={property.property_name}
-                  className="property-image"
-                  width="200"
-                />
-              )}
-              Location: {property.location} <br />
-              Price: £{property.price_per_night}/night <br />
-              Type: {property.property_type} <br />
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <hr />
-
-      {/* Upcoming Bookings on Own Properties */}
-      <h3>Upcoming Bookings</h3>
-      {ownProperties.length === 0 ? (
-        <p>No properties, so no bookings.</p>
-      ) : (
-        ownProperties.map((property) => (
-          <div key={property.property_id}>
-            <h4>{property.property_name}</h4>
-            {propertyBookings[property.property_id]?.length === 0 ? (
-              <p>No upcoming bookings.</p>
-            ) : (
-              <ul>
-                {propertyBookings[property.property_id].map((booking) => (
-                  <li key={booking.booking_id} className="booking-item">
-                    <strong>Guest:</strong> {booking.guest_name} <br />
-                    <strong>Check-in:</strong>{" "}
-                    {new Date(booking.check_in_date).toLocaleDateString()}{" "}
-                    <br />
-                    <strong>Check-out:</strong>{" "}
-                    {new Date(booking.check_out_date).toLocaleDateString()}{" "}
-                    <br />
-                  </li>
-                ))}
-              </ul>
-            )}
+      {/* Reviews Section */}
+      <div className="profile-section-card">
+        <h3>My Reviews</h3>
+        <p>Reviews you've written for properties.</p>
+        {userReviews.length === 0 ? (
+          <p>
+            <em>You haven't written any reviews yet.</em>
+          </p>
+        ) : (
+          <div className="profile-reviews-list">
+            {userReviews.map((review) => (
+              <div key={review.review_id} className="profile-review-item">
+                <div className="review-header">
+                  <h4>{review.property_name || "Property"}</h4>
+                  <span className="review-rating">⭐ {review.rating}/5</span>
+                </div>
+                <p className="review-comment">"{review.comment}"</p>
+                <div className="review-footer">
+                  <span className="review-date">
+                    {review.created_at
+                      ? new Date(review.created_at).toLocaleDateString()
+                      : ""}
+                  </span>
+                  {review.property_id && (
+                    <Link
+                      to={`/property/${review.property_id}`}
+                      className="view-property-link"
+                    >
+                      View Property
+                    </Link>
+                  )}
+                </div>
+                <div className="review-actions">
+                  <button
+                    className="delete-review-btn"
+                    onClick={() => handleDeleteReview(review.review_id)}
+                    title="Delete review"
+                  >
+                    🗑️ Delete
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
-        ))
-      )}
-
-      <hr />
-
-      {/* Reviews */}
-      <h3>My Reviews</h3>
-      <p>No reviews yet.</p>
-      <hr />
+        )}
+      </div>
     </div>
   );
 };
